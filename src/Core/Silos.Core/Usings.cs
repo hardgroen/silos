@@ -1,0 +1,16 @@
+global using MediatR;
+global using System;
+global using System.Linq;
+global using Marten.Schema;
+global using Newtonsoft.Json;
+global using System.Threading;
+global using System.Reflection;
+global using System.Threading.Tasks;
+global using Silos.Core.Domain;
+global using Silos.Core.EventBus;
+global using System.Collections.Generic;
+global using Newtonsoft.Json.Serialization;
+global using Silos.Core.Persistence;
+global using System.Text.Json.Serialization;
+global using Silos.Core.CQRS.CommandHandling;
+global using Silos.Core.CQRS.QueryHandling;
