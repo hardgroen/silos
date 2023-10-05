@@ -1,0 +1,25 @@
+.user-account-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 5%;
+  background-color: #fefefe;
+
+  .credit-limit-field {
+    width: 25%;
+  }
+
+  .user-account-form {
+    width: 100%;
+
+    .user-account-footer {
+      display: flex;
+      justify-content: center;
+      margin: 5px;
+
+      .footer-item {
+        margin-left: 10px;
+        width: 100px;
+      }
+    }
+  }
+}

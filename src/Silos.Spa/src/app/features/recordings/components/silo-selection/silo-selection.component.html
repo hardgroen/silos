@@ -1,0 +1,25 @@
+<div class="product-selection-container">
+  <div class="product-list-container">
+    <div class="product-list">
+      <div class="card" *ngIf="(isLoading | async) && silos.length == 0">
+        <app-loader-skeleton></app-loader-skeleton>
+      </div>
+      <div class="container">
+        <div class="col-12" *ngFor="let silo of silos | sort : 'name' : 'asc'">
+          <div class="card product-container">
+            <div class="card-body">
+              <h3 class="card-title product-title">{{ silo.name }}</h3>
+              <div class="row">
+                <div class="col-10">
+                  <p class="card-text product-description">
+                    {{ silo.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

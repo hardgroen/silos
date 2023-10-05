@@ -7,9 +7,9 @@ import { map } from 'rxjs/operators';
 import { TokenStorageService } from './token-storage.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification.service';
-import { appConstants } from '../../modules/ecommerce/constants/appConstants';
+import { appConstants } from '../../features/recordings/constants/appConstants';
 import { environment } from 'src/environments/environment';
-import { Customer } from 'src/app/modules/ecommerce/models/Customer';
+import { User } from 'src/app/features/recordings/models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -37,19 +37,6 @@ export class AuthService extends RestService {
     return storedUser;
   }
 
-  public get currentCustomer(): Customer | null {
-    const storedCustomerData = this.localStorageService.getValueByKey(
-      appConstants.storedCustomer
-    );
-
-    if (storedCustomerData) {
-      var storedCustomer = JSON.parse(storedCustomerData);
-      return storedCustomer as Customer;
-    }
-
-    return null;
-  }
-
   login(email: string, password: string) {
     return this.post('accounts/login', { email, password }).pipe(
       map((result) => {
@@ -70,7 +57,6 @@ export class AuthService extends RestService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem(appConstants.storedCustomer);
     localStorage.removeItem(appConstants.storedUser);
     this.tokenStorageToken.clearToken();
 

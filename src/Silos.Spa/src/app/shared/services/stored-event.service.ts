@@ -1,5 +1,5 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { StoredEventData } from 'src/app/modules/ecommerce/models/StoredEventData';
+import { StoredEventData } from 'src/app/features/recordings/models/StoredEventData';
 import { StoredEventsViewerComponent } from 'src/app/shared/components/stored-events-viewer/stored-events-viewer.component';
 
 @Injectable({

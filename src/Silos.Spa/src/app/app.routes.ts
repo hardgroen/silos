@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './modules/ecommerce/components/home/home.component';
-import { LoginComponent } from './modules/authentication/components/login/login.component';
+import { HomeComponent } from './features/recordings/components/home/home.component';
+import { LoginComponent } from './features/authentication/components/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { CustomerAccountComponent } from './modules/authentication/components/customer-account/customer-account.component';
-import { ProductSelectionComponent } from './modules/ecommerce/components/product-selection/product-selection.component';
-import { OrdersComponent } from './modules/ecommerce/components/orders/orders.component';
-import { CustomerDetailsComponent } from './modules/ecommerce/components/customer-details/customer-details.component';
+import { UserAccountComponent } from './features/authentication/components/user-account/user-account.component';
+import { SiloSelectionComponent } from './features/recordings/components/silo-selection/silo-selection.component';
+import { UserDetailsComponent } from './features/recordings/components/user-details/user-details.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -13,8 +12,8 @@ export const APP_ROUTES: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'customer-account',
-    component: CustomerAccountComponent,
+    path: 'user-account',
+    component: UserAccountComponent,
   },
   {
     path: 'home',
@@ -23,26 +22,14 @@ export const APP_ROUTES: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'products',
-    component: ProductSelectionComponent,
+    path: 'silos',
+    component: SiloSelectionComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full',
   },
   {
-    path: 'products/:quoteId',
-    component: ProductSelectionComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full',
-  },
-  {
-    path: 'orders',
-    component: OrdersComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full',
-  },
-  {
-    path: 'customer-details',
-    component: CustomerDetailsComponent,
+    path: 'user-details',
+    component: UserDetailsComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full',
   },

@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
 import { LocalStorageService } from './services/local-storage.service';
-import { CurrencyNotificationService } from '../modules/ecommerce/services/currency-notification.service';
 import { ConfirmationDialogService } from './services/confirmation-dialog.service';
 import { SignalrService } from './services/signalr.service';
 
@@ -25,7 +24,6 @@ import { SignalrService } from './services/signalr.service';
     NotificationService,
     ConfirmationDialogService,
     LocalStorageService,
-    CurrencyNotificationService,
     SignalrService,
   ],
 })

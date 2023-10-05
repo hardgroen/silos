@@ -5,9 +5,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { EcommerceModule } from './modules/ecommerce/ecommerce.module';
+import { RecordingsModule } from './features/recordings/recordings.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { AuthenticationModule } from './features/authentication/authentication.module';
 import { APP_ROUTES } from './app.routes';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ServerErrorInterceptor } from './core/interceptors/server-error.interceptor';
@@ -20,7 +20,7 @@ import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.componen
   imports: [
     SharedModule,
     CoreModule,
-    EcommerceModule,
+    RecordingsModule,
     AuthenticationModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

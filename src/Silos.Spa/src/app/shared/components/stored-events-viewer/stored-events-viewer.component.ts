@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { StoredEventData } from 'src/app/modules/ecommerce/models/StoredEventData';
+import { StoredEventData } from 'src/app/features/recordings/models/StoredEventData';
 
 @Component({
   selector: 'app-stored-event-viewer',

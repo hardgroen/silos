@@ -1,0 +1,65 @@
+<!-- Stored Event Viewer container-->
+<div class="stored-event-viewer-container">
+  <template #storedEventViewerContainer></template>
+</div>
+<div class="card fadeInDown user-details-container">
+  <div class="card-body user-details-form">
+    <div class="cart-header">
+      <div class="row">
+        <div class="col-7">
+          <h4>User details</h4>
+        </div>
+        <div class="col-5 user-events-history">
+          <a class="text-secondary event-link" (click)="showUserStoredEvents()">
+            <fa-icon [icon]="faList"></fa-icon>
+            User Events
+          </a>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div class="container" *ngIf="(isLoading | async) && !user">
+      <app-loader-skeleton></app-loader-skeleton>
+    </div>
+    <div class="container" *ngIf="user">
+      <div class="form-group row">
+        <form [formGroup]="userDetailsForm">
+          <div class="form-group">
+            <label for="name" class="form-label col-lg-12">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              formControlName="name"
+              value="{{ user!.name }}"
+              placeholder="Name"
+              [ngClass]="{ 'is-invalid': isFieldInvalid('name') }"
+            />
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('name')">
+              Name is required
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row mt-3">
+        <hr />
+        <div class="col-lg-12 user-details-footer">
+          <button
+            [routerLink]="['/home']"
+            class="btn btn-secondary footer-item"
+          >
+            Cancel
+          </button>
+          <button
+            (click)="saveDetails()"
+            class="btn btn-primary footer-item"
+            [disabled]="userDetailsForm.invalid || (isLoading | async)"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

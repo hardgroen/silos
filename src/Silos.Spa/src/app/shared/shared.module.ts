@@ -10,7 +10,6 @@ import {
   NgbModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { CurrencyDropdownComponent } from '../modules/ecommerce/components/currency-dropdown/currency-dropdown.component';
 import { StoredEventsViewerComponent } from './components/stored-events-viewer/stored-events-viewer.component';
 import { LoaderSkeletonComponent } from './components/loader-skeleton/loader-skeleton.component';
 
@@ -18,7 +17,6 @@ import { LoaderSkeletonComponent } from './components/loader-skeleton/loader-ske
   declarations: [
     StoredEventsViewerComponent,
     ConfirmationDialogComponent,
-    CurrencyDropdownComponent,
     LoaderSkeletonComponent,
   ],
   imports: [
@@ -32,7 +30,6 @@ import { LoaderSkeletonComponent } from './components/loader-skeleton/loader-ske
   ],
   exports: [
     ConfirmationDialogComponent,
-    CurrencyDropdownComponent,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,

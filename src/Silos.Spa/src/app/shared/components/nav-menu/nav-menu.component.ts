@@ -2,10 +2,9 @@ import { firstValueFrom, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { appConstants } from 'src/app/modules/ecommerce/constants/appConstants';
-import { CustomersService } from 'src/app/modules/ecommerce/services/customers.service';
-import { Customer } from 'src/app/modules/ecommerce/models/Customer';
-import { Quote } from 'src/app/modules/ecommerce/models/Quote';
+import { appConstants } from 'src/app/features/recordings/constants/appConstants';
+import { UserService } from 'src/app/features/recordings/services/user.service';
+import { User } from 'src/app/features/recordings/models/User';
 import {
   ChangeDetectorRef,
   Component,
@@ -32,20 +31,19 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   storedEventViewerContainer!: ViewContainerRef;
 
   faList = faList;
-  faShoppingBasket = faShoppingBasket;
-  faShoppingCart = faShoppingCart;
   faUser = faUser;
   faSignOutAlt = faSignOutAlt;
+  faShoppingCart = faShoppingCart;
   isExpanded = false;
   isModalOpen = false;
   isLoggedIn = false;
   subscription!: Subscription;
-  customer!: Customer;
+  user!: User;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
-    private customersService: CustomersService,
+    private userService: UserService,
     private tokenStorageService: TokenStorageService,
     private localStorageService: LocalStorageService
   ) {}
@@ -55,7 +53,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       async (response) => {
         this.isLoggedIn = response;
         if (this.isLoggedIn) {
-          await this.loadCustomerDetails();
+          await this.loadUserDetails();
         }
       }
     );
@@ -66,18 +64,8 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  get quoteItems() {
-    let quoteStr = this.localStorageService.getValueByKey('openQuote');
-    if (quoteStr && quoteStr != 'undefined') {
-      var quote = JSON.parse(quoteStr) as Quote;
-      return quote.items.length;
-    }
-
-    return 0;
-  }
-
   get loadStoredUser() {
-    return this.authService.currentCustomer?.email;
+    return this.authService.currentUser;
   }
 
   logout() {
@@ -92,27 +80,25 @@ export class NavMenuComponent implements OnInit, OnDestroy {
     this.isModalOpen = false;
   }
 
-  private async storeLoadedCustomer() {
-    // storing customer in the localstorage
+  private async storeLoadedUser() {
+    // storing user in the localstorage
     this.localStorageService.setValue(
-      appConstants.storedCustomer,
-      JSON.stringify(this.customer)
+      appConstants.storedUser,
+      JSON.stringify(this.user)
     );
   }
 
-  private async loadCustomerDetails() {
-    await firstValueFrom(this.customersService.loadCustomerDetails()).then(
+  private async loadUserDetails() {
+    await firstValueFrom(this.userService.loadUserDetails()).then(
       (result) => {
         if (result.success) {
           var data = result.data;
-          this.customer = new Customer(
+          this.user = new User(
             data.id,
             data.name,
-            data.email,
-            data.shippingAddress,
-            data.creditLimit
+            data.email
           );
-          this.storeLoadedCustomer();
+          this.storeLoadedUser();
         }
       }
     );
