@@ -1,7 +1,7 @@
 ﻿namespace Silos.Core.Infrastructure.SignalR;
 
 public record UpdateOrderStatusRequest(
-    Guid CustomerId, 
+    Guid UserId, 
     Guid OrderId, 
     string OrderStatusText, 
     int OrderStatusCode);

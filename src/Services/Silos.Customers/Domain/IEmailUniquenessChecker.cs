@@ -1,4 +1,4 @@
-﻿namespace Silos.Customers.Domain;
+﻿namespace Silos.Users.Domain;
 
 /// <summary>
 /// Domain service for checking email uniqueness

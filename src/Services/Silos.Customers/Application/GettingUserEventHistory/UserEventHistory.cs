@@ -1,15 +1,15 @@
-﻿namespace Silos.Customers.Application.GettingCustomerEventHistory;
+﻿namespace Silos.Users.Application.GettingUserEventHistory;
 
-public record CustomerEventHistory(
+public record UserEventHistory(
     Guid Id,
     Guid AggregateId,
     string EventTypeName,
     string EventData) : IEventHistory
 {
-    public static CustomerEventHistory Create(IEvent @event, Guid aggregateId)
+    public static UserEventHistory Create(IEvent @event, Guid aggregateId)
     {
         var serialized = JsonConvert.SerializeObject(@event.Data);
-        return new CustomerEventHistory(
+        return new UserEventHistory(
             Guid.NewGuid(),
             aggregateId,
             @event.EventTypeName,

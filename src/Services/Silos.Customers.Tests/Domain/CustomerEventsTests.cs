@@ -1,5 +1,4 @@
-using Silos.Customers.Domain;
-using Silos.Customers.Domain.Events;
+using Silos.Users.Domain;
 
 namespace Silos.Customers.Tests.Domain;
 
@@ -9,35 +8,33 @@ public class CustomerEventsTests
     public void CreatingCustomer_WithCustomerData_ReturnsCustomerRegisteredEvent()
     {
         // Given
-        var customerData = new CustomerData(_email, _name, _address, _creditLimit);
+        var customerData = new UserData(_email, _name);
 
         // When
-        var customer = Customer.Create(customerData);
+        var customer = User.Create(customerData);
 
         // Then
-        var @event = customer.GetUncommittedEvents().LastOrDefault() as CustomerRegistered;
+        var @event = customer.GetUncommittedEvents().LastOrDefault() as UserRegistered;
         Assert.NotNull(@event);
-        @event.Should().BeOfType<CustomerRegistered>();
+        @event.Should().BeOfType<UserRegistered>();
     }
 
     [Fact]
     public void UpdatingCustomer_WithCustomerData_ReturnsCustomerUpdatedEvent()
     {
         // Given
-        var customerData = new CustomerData(_email, _name, _address, _creditLimit);
-        var customer = Customer.Create(customerData);
+        var customerData = new UserData(_email, _name);
+        var customer = User.Create(customerData);
 
         // When
         customer.UpdateCustomerInformation(customerData);
 
         // Then
-        var @event = customer.GetUncommittedEvents().LastOrDefault() as CustomerUpdated;
+        var @event = customer.GetUncommittedEvents().LastOrDefault() as UserUpdated;
         Assert.NotNull(@event);
-        @event.Should().BeOfType<CustomerUpdated>();
+        @event.Should().BeOfType<UserUpdated>();
     }
 
     private const string _email = "email@test.com";
     private const string _name = "UserTest";
-    private const string _address = "Rue XYZ";
-    private const decimal _creditLimit = 1000;
 }

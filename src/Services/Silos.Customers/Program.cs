@@ -7,12 +7,12 @@ services.AddCoreInfrastructure(builder.Configuration);
 
 // Mediator        
 builder.Services.AddMediatR(cfg => 
-    cfg.RegisterServicesFromAssembly(typeof(RegisterCustomerHandler).Assembly));
+    cfg.RegisterServicesFromAssembly(typeof(RegisterUserHandler).Assembly));
 
 // Services
 services.AddScoped<ITokenRequester, TokenRequester>();
 services.AddScoped<IEmailUniquenessChecker, EmailUniquenessChecker>();
-services.AddScoped<IEventStoreRepository<Customer>, MartenRepository<Customer>>();
+services.AddScoped<IEventStoreRepository<User>, MartenRepository<User>>();
 services.AddMarten(builder.Configuration,
     options => options.ConfigureProjections());
 

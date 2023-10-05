@@ -1,17 +1,17 @@
-﻿namespace Silos.Customers.Api.Application.RegisteringCustomer;
+﻿namespace Silos.Users.Application.RegisteringUser;
 
-public class RegisterCustomerHandler : ICommandHandler<RegisterCustomer>
+public class RegisterUserHandler : ICommandHandler<RegisterUser>
 {
     private readonly IHttpRequester _httpRequester;
     private readonly IEmailUniquenessChecker _uniquenessChecker;
     private readonly TokenIssuerSettings _tokenIssuerSettings;
-    private readonly IEventStoreRepository<Customer> _customerWriteRepository;
+    private readonly IEventStoreRepository<User> _customerWriteRepository;
 
-    public RegisterCustomerHandler(
+    public RegisterUserHandler(
         IHttpRequester httpRequester,
         IEmailUniquenessChecker uniquenessChecker,
-        IOptions<TokenIssuerSettings> tokenIssuerSettings,        
-        IEventStoreRepository<Customer> customerWriteRepository)
+        IOptions<TokenIssuerSettings> tokenIssuerSettings,
+        IEventStoreRepository<User> customerWriteRepository)
     {
         _httpRequester = httpRequester;
         _uniquenessChecker = uniquenessChecker;
@@ -19,18 +19,16 @@ public class RegisterCustomerHandler : ICommandHandler<RegisterCustomer>
         _customerWriteRepository = customerWriteRepository;
     }
 
-    public async Task Handle(RegisterCustomer command, CancellationToken cancellationToken)
+    public async Task Handle(RegisterUser command, CancellationToken cancellationToken)
     {
         if (!_uniquenessChecker.IsUnique(command.Email))
             throw new BusinessRuleException("This e-mail is already in use.");
 
-        var customerData = new CustomerData(
+        var customerData = new UserData(
             command.Email,
-            command.Name,
-            command.ShippingAddress,
-            command.CreditLimit);
+            command.Name);
 
-        var customer = Customer.Create(customerData);
+        var customer = User.Create(customerData);
         var response = await CreateUserForCustomer(command);
 
         if (response is null)
@@ -43,7 +41,7 @@ public class RegisterCustomerHandler : ICommandHandler<RegisterCustomer>
             .AppendEventsAsync(customer);
     }
 
-    private async Task<IntegrationHttpResponse?> CreateUserForCustomer(RegisterCustomer command)
+    private async Task<IntegrationHttpResponse> CreateUserForCustomer(RegisterUser command)
     {
         try
         {
@@ -51,8 +49,8 @@ public class RegisterCustomerHandler : ICommandHandler<RegisterCustomer>
             var result = await _httpRequester
                 .PostAsync<IntegrationHttpResponse>(identityServerCreateUserUrl,
                 new RegisterUserRequest(
-                    command.Email, 
-                    command.Password, 
+                    command.Email,
+                    command.Password,
                     command.PasswordConfirm));
 
             return result;

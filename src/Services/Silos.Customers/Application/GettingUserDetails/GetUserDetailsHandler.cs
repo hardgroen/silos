@@ -1,12 +1,14 @@
-﻿namespace Silos.Customers.Api.Application.GettingCustomerDetails;
+﻿using Silos.Users.Infrastructure.Projections;
 
-public class GetCustomerDetailsHandler : IQueryHandler<GetCustomerDetails, CustomerDetails>
+namespace Silos.Users.Application.GettingUserDetails;
+
+public class GetUserDetailsHandler : IQueryHandler<GetUserDetails, UserDetails>
 {
     private readonly TokenIssuerSettings _tokenIssuerSettings;
     private readonly IQuerySession _querySession;
     private readonly IHttpRequester _requester;
 
-    public GetCustomerDetailsHandler(
+    public GetUserDetailsHandler(
         IOptions<TokenIssuerSettings> tokenIssuerSettings,
         IHttpRequester httpRequester,
         IQuerySession querySession)
@@ -16,7 +18,7 @@ public class GetCustomerDetailsHandler : IQueryHandler<GetCustomerDetails, Custo
         _querySession = querySession;
     }
 
-    public async Task<CustomerDetails> Handle(GetCustomerDetails query, CancellationToken cancellationToken)
+    public async Task<UserDetails> Handle(GetUserDetails query, CancellationToken cancellationToken)
     {
         var uri = $"{_tokenIssuerSettings.Authority}/connect/userinfo";
 
@@ -24,20 +26,18 @@ public class GetCustomerDetailsHandler : IQueryHandler<GetCustomerDetails, Custo
             .GetAsync<UserInfoResponse>(uri, query.UserAccessToken);
 
         if (response is null)
-            throw new RecordNotFoundException($"Cannot retrieve customer user info.");
+            throw new RecordNotFoundException($"Cannot retrieve user info.");
 
-        var details = new CustomerDetails();
-        var customer = _querySession.Query<CustomerDetails>()
+        var details = new UserDetails();
+        var customer = _querySession.Query<UserDetails>()
             .FirstOrDefault(c => c.Email == response.Email);
 
         if (customer is null)
-            throw new RecordNotFoundException($"Customer not found.");
+            throw new RecordNotFoundException($"User not found.");
 
         details.Id = customer.Id;
         details.Email = customer.Email;
         details.Name = customer.Name;
-        details.ShippingAddress = customer.ShippingAddress;
-        details.CreditLimit = customer.CreditLimit;
 
         return details;
     }

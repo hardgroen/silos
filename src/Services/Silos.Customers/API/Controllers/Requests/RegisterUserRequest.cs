@@ -1,6 +1,6 @@
-﻿namespace Silos.Customers.API.Controllers.Requests;
+﻿namespace Silos.Users.API.Controllers.Requests;
 
-public record class RegisterCustomerRequest
+public record class RegisterUserRequest
 {
     [Required(ErrorMessage = "The {0} field is required.")]
     [EmailAddress(ErrorMessage = "The field {0} is in an invalid format")]

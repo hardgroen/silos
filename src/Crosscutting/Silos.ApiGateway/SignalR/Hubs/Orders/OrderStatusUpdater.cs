@@ -2,7 +2,7 @@
 
 public interface IOrderStatusUpdater
 {
-    Task UpdateOrderStatus(Guid customerId, Guid orderId, string orderStatusText, int orderStatusCode);
+    Task UpdateOrderStatus(Guid userId, Guid orderId, string orderStatusText, int orderStatusCode);
 }
 
 /// <summary>
@@ -22,7 +22,7 @@ public class OrderStatusUpdater : IOrderStatusUpdater
     }
 
     public async Task UpdateOrderStatus(
-        Guid customerId,
+        Guid userId,
         Guid orderId,
         string orderStatusText,
         int orderStatusCode)
@@ -30,7 +30,7 @@ public class OrderStatusUpdater : IOrderStatusUpdater
         try
         {
             await _broadCastHub.Clients
-                .Group(customerId.ToString())
+                .Group(userId.ToString())
                 .UpdateOrderStatus(orderId.ToString(),
                     orderStatusText,
                     orderStatusCode

@@ -1,4 +1,4 @@
-using Silos.Customers.Domain;
+using Silos.Users.Domain;
 
 namespace Silos.Customers.Tests.Domain;
 
@@ -10,20 +10,16 @@ public class CustomerCreationTests
         // Given
         string email = "email@test.com";
         string name = "UserTest";
-        string address = "Rue XYZ";
-        decimal creditLimit = 1000;
 
-        var customerData = new CustomerData(email, name, address, creditLimit);
+        var customerData = new UserData(email, name);
 
         // When
-        var customer = Customer.Create(customerData);
+        var customer = User.Create(customerData);
 
         // Then
         Assert.NotNull(customer);
         customer.Id.Value.Should().NotBe(Guid.Empty);
         customer.Email.Should().Be(email);
         customer.Name.Should().Be(name);
-        customer.ShippingAddress.Should().Be(Address.Create(address));
-        customer.CreditLimit.Should().Be(CreditLimit.Create(creditLimit));
     }
 }

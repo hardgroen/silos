@@ -1,25 +1,25 @@
 {
   "Routes": [
-    // Customers
+    // Users
     {
-      "DownstreamPathTemplate": "/api/customers",
-      "UpstreamPathTemplate": "/api/customers",
+      "DownstreamPathTemplate": "/api/users",
+      "UpstreamPathTemplate": "/api/users",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "silos-customers",
+          "Host": "silos-users",
           "Port": 80
         }
       ],
       "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/customers/{id}",
-      "UpstreamPathTemplate": "/api/customers/{id}",
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "UpstreamPathTemplate": "/api/users/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "silos-customers",
+          "Host": "silos-users",
           "Port": 80
         }
       ],

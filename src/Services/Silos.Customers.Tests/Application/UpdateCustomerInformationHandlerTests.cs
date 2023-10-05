@@ -1,6 +1,5 @@
-using Silos.Customers.Domain;
-using Silos.Customers.Domain.Commands;
-using Silos.Customers.Api.Application.UpdatingCustomerInformation;
+using Silos.Users.Domain;
+using Silos.Users.Application.UpdatingUserInformation;
 
 namespace Silos.Customers.Tests.Application;
 
@@ -12,18 +11,15 @@ public class UpdateCustomerInformationHandlerTests
         // Given
         string email = "email@test.com";
         string name = "UserTest";
-        string address = "Rue XYZ";
-        decimal creditLimit = 1000;
 
-        var customerWriteRepository = new DummyEventStoreRepository<Customer>();
-        var customerData = new CustomerData(email, name, address, creditLimit);
-        var customer = Customer.Create(customerData);
+        var customerWriteRepository = new DummyEventStoreRepository<User>();
+        var customerData = new UserData(email, name);
+        var customer = User.Create(customerData);
         await customerWriteRepository.AppendEventsAsync(customer);
 
         var newName = "New Name";
-        var newAddress = "New Address";
-        var updateCommand = UpdateCustomerInformation.Create(customer.Id, newName, newAddress, creditLimit);
-        var commandHandler = new UpdateCustomerInformationHandler(customerWriteRepository);
+        var updateCommand = UpdateUserInformation.Create(customer.Id, newName);
+        var commandHandler = new UpdateUserInformationHandler(customerWriteRepository);
 
         // When
         await commandHandler.Handle(updateCommand, CancellationToken.None);
@@ -31,6 +27,5 @@ public class UpdateCustomerInformationHandlerTests
 
         // Then
         updatedCustomer.Name.Should().Be(newName);
-        updatedCustomer.ShippingAddress.Should().Be(Address.Create(newAddress));
     }
 }

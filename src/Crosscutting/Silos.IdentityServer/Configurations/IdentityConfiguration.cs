@@ -2,7 +2,7 @@
 
 public class IdentityConfiguration
 {
-    public const string CustomerRole = "Customer";
+    public const string UserRole = "User";
 
     private const string _apiScope = "silos-api.scope";    
     private const string _readScope = "read";

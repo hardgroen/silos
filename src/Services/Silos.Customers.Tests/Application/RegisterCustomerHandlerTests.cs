@@ -1,6 +1,5 @@
-using Silos.Customers.Domain;
-using Silos.Customers.Domain.Commands;
-using Silos.Customers.Api.Application.RegisteringCustomer;
+using Silos.Users.Application.RegisteringUser;
+using Silos.Users.Domain;
 
 namespace Silos.Customers.Tests.Application;
 
@@ -13,7 +12,7 @@ public class RegisterCustomerHandlerTests
         _checker.Setup(p => p.IsUnique(It.IsAny<string>()))
             .Returns(true);
         
-        var customerWriteRepository = new DummyEventStoreRepository<Customer>();
+        var customerWriteRepository = new DummyEventStoreRepository<User>();
 
         var options = new Mock<IOptions<TokenIssuerSettings>>();
         options.Setup(p => p.Value)
@@ -24,8 +23,8 @@ public class RegisterCustomerHandlerTests
             .Returns(Task.FromResult(new IntegrationHttpResponse() { Success = true }));
 
         var confirmation = _password;
-        var registerCommand = RegisterCustomer.Create(_email, _password, confirmation, _name, _address, _creditLimit);
-        var commandHandler = new RegisterCustomerHandler(
+        var registerCommand = RegisterUser.Create(_email, _password, confirmation, _name);
+        var commandHandler = new RegisterUserHandler(
             requester.Object,
             _checker.Object, 
             options.Object,
@@ -38,7 +37,6 @@ public class RegisterCustomerHandlerTests
         var addedCustomer = customerWriteRepository.AggregateStream.First().Aggregate;
         addedCustomer.Email.Should().Be(registerCommand.Email);
         addedCustomer.Name.Should().Be(registerCommand.Name);
-        addedCustomer.ShippingAddress.Should().Be(Address.Create(_address));
     }
 
     [Fact]
@@ -48,7 +46,7 @@ public class RegisterCustomerHandlerTests
         _checker.Setup(p => p.IsUnique(It.IsAny<string>()))
             .Returns(false);
 
-        var customerWriteRepository = new DummyEventStoreRepository<Customer>();
+        var customerWriteRepository = new DummyEventStoreRepository<User>();
 
         var options = new Mock<IOptions<TokenIssuerSettings>>();
         options.Setup(p => p.Value)
@@ -59,8 +57,8 @@ public class RegisterCustomerHandlerTests
             .Returns(Task.FromResult(new IntegrationHttpResponse() { Success = true }));
 
         var confirmation = _password;
-        var registerCommand = RegisterCustomer.Create(_email, _password, confirmation, _name, _address, _creditLimit);
-        var commandHandler = new RegisterCustomerHandler(
+        var registerCommand = RegisterUser.Create(_email, _password, confirmation, _name);
+        var commandHandler = new RegisterUserHandler(
             requester.Object,
             _checker.Object,
             options.Object,

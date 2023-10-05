@@ -7,7 +7,7 @@ public interface IOrderStatusHubClient
 
 public class OrderStatusHub : Hub<IOrderStatusHubClient>
 {
-    public async Task JoinCustomerToGroup(string customerId) =>    
-        await Groups.AddToGroupAsync(Context.ConnectionId, customerId);
+    public async Task JoinUserToGroup(string userId) =>    
+        await Groups.AddToGroupAsync(Context.ConnectionId, userId);
 
 }

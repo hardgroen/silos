@@ -1,4 +1,4 @@
-﻿namespace Silos.Customers.API.Controllers.Requests;
+﻿namespace Silos.Users.API.Controllers.Requests;
 
 public record class UpdateCustomerRequest
 {

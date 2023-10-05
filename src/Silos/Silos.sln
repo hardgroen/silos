@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.IdentityServer", "..\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6D18B9F7-C1AC-4A8C-BDE0-19C3C7F57173}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.Customers", "..\Services\Silos.Customers\Silos.Customers.csproj", "{7DA3C804-7D0A-4884-9234-15A4311D0EEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.Users", "..\Services\Silos.Customers\Silos.Users.csproj", "{7DA3C804-7D0A-4884-9234-15A4311D0EEA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.Customers.Tests", "..\Services\Silos.Customers.Tests\Silos.Customers.Tests.csproj", "{8F708A35-4974-426C-A93E-BE8E58554F5E}"
 EndProject

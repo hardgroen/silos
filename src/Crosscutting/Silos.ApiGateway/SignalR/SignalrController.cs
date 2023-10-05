@@ -17,7 +17,7 @@ public class SignalrController : ControllerBase
     [HttpPost, Route("updateorderstatus")]
     public async Task<IActionResult> UpdateOrderStatus([FromBody] UpdateOrderStatusRequest request)
     {
-        await _orderStatusUpdater.UpdateOrderStatus(request.CustomerId,
+        await _orderStatusUpdater.UpdateOrderStatus(request.UserId,
             request.OrderId,
             request.OrderStatusText,
             request.OrderStatusCode);
@@ -25,5 +25,5 @@ public class SignalrController : ControllerBase
         return Ok();
     }
 
-    public record UpdateOrderStatusRequest(Guid CustomerId, Guid OrderId, string OrderStatusText, int OrderStatusCode);
+    public record UpdateOrderStatusRequest(Guid UserId, Guid OrderId, string OrderStatusText, int OrderStatusCode);
 }
