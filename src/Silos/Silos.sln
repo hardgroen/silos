@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.Users", "..\Services\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silos.Customers.Tests", "..\Services\Silos.Customers.Tests\Silos.Customers.Tests.csproj", "{8F708A35-4974-426C-A93E-BE8E58554F5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silos.Recordings", "Silos.Recordings\Silos.Recordings.csproj", "{10FC733F-2A05-495F-B39E-267B25928915}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,14 @@ Global
 		{8F708A35-4974-426C-A93E-BE8E58554F5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F708A35-4974-426C-A93E-BE8E58554F5E}.Release|x64.ActiveCfg = Release|Any CPU
 		{8F708A35-4974-426C-A93E-BE8E58554F5E}.Release|x64.Build.0 = Release|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Debug|x64.Build.0 = Debug|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Release|x64.ActiveCfg = Release|Any CPU
+		{10FC733F-2A05-495F-B39E-267B25928915}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +120,7 @@ Global
 		{798E666C-815E-4DD2-8713-43A9E7C6AE2F} = {C3C2006D-73E1-4DE4-8452-728CE89430F7}
 		{7DA3C804-7D0A-4884-9234-15A4311D0EEA} = {6D18B9F7-C1AC-4A8C-BDE0-19C3C7F57173}
 		{8F708A35-4974-426C-A93E-BE8E58554F5E} = {6D18B9F7-C1AC-4A8C-BDE0-19C3C7F57173}
+		{10FC733F-2A05-495F-B39E-267B25928915} = {6D18B9F7-C1AC-4A8C-BDE0-19C3C7F57173}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {332AF048-DB96-4E3C-9E59-AAC9CB6B8D6F}

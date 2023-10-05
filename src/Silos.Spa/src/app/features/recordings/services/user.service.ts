@@ -18,6 +18,7 @@ export class UserService extends RestService {
   }
 
   public loadUserDetails(): Observable<ServiceResponse> {
+    console.log('loaduserdetails');
     return this.get(this.controllerName);
   }
 

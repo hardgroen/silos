@@ -36,7 +36,7 @@ export class UserDetailsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.loadUserDetails();
+    await this._loadUserDetails();
     if (this.user) {
       this.userDetailsForm = this._formBuilder.group({
         name: [this.user.name, Validators.required]
@@ -60,7 +60,7 @@ export class UserDetailsComponent implements OnInit {
     }
 
     const userUpdate = new UpdateUserRequest(
-      this.f['name'].value,
+      this._f['name'].value,
     );
 
     await firstValueFrom(
@@ -69,14 +69,14 @@ export class UserDetailsComponent implements OnInit {
         userUpdate)
     ).then(async () => {
       this._notificationService.showSuccess('User successfully updated!');
-      await this.loadUserDetails();
+      await this._loadUserDetails();
     });
   }
 
   async showUserStoredEvents() {
     await firstValueFrom(
       this._userService.getUserStoredEvents(
-        this._authService.currentUser!
+        this.user.id
       )
     ).then((result) => {
       if (result.success) {
@@ -88,7 +88,7 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  private async storeLoadedUser() {
+  private async _storeLoadedUser() {
     // storing user in the localstorage
     this._localStorageService.setValue(
       appConstants.storedUser,
@@ -96,7 +96,7 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  private async loadUserDetails() {
+  private async _loadUserDetails() {
     await firstValueFrom(this._userService.loadUserDetails()).then(
       (result) => {
         if (result.success) {
@@ -106,14 +106,14 @@ export class UserDetailsComponent implements OnInit {
             data.name,
             data.email
           );
-          this.storeLoadedUser();
+          this._storeLoadedUser();
         }
       }
     );
   }
 
   // getter for easy access to form fields
-  private get f() {
+  private get _f() {
     return this.userDetailsForm.controls;
   }
 }

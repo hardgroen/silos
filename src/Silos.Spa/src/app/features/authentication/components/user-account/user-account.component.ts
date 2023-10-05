@@ -28,10 +28,8 @@ export class UserAccountComponent implements OnInit {
     this.accountForm = this.formBuilder.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      shippingAddress: ['404 Rue Infinite Loop', Validators.required],
       password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
-      creditLimit: ['10000', Validators.required],
+      passwordConfirm: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'

@@ -1,4 +1,2 @@
-CREATE DATABASE productsdb;
-CREATE DATABASE customersdb;
-CREATE DATABASE ordersdb;
-CREATE DATABASE paymentsdb;
+CREATE DATABASE recordingsdb;
+CREATE DATABASE usersdb;

@@ -1,6 +1,8 @@
+using Microsoft.IdentityModel.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
-
+IdentityModelEventSource.ShowPII = true;
 services.AddSignalR();
 services.AddControllers();
 services.AddEndpointsApiExplorer();

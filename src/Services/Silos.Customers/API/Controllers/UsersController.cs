@@ -72,7 +72,7 @@ public class UsersController : CustomControllerBase
     [Authorize(Roles = PolicyBuilder.UserRole, Policy = PolicyBuilder.WritePolicy)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> UpdateInformation([FromRoute] Guid userId, [FromBody] UpdateCustomerRequest request) =>
+    public async Task<IActionResult> UpdateInformation([FromRoute] Guid userId, [FromBody] UpdateUserRequest request) =>
         await Response(
             UpdateUserInformation.Create(
                 UserId.Of(userId),

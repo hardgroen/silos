@@ -20,6 +20,7 @@ export abstract class RestService {
     responseTypeInput?: any
   ): Observable<any> {
     const fullUrl = Location.joinWithSlash(this.apiBaseUrl, relativeUrl);
+    console.log('fullUrl', fullUrl);
     return this.http
       .get(fullUrl, { params: httpParams, responseType: responseTypeInput })
       .pipe(

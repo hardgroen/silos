@@ -106,7 +106,7 @@ public class UsersControllerTests
     {
         // Given
         var customerId = Guid.NewGuid();
-        var request = new UpdateCustomerRequest
+        var request = new UpdateUserRequest
         {
             Name = "CustomerX"
         };

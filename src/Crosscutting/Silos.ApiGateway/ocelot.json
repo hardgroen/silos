@@ -7,8 +7,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "silos-users",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 5224
         }
       ],
       "UpstreamHttpMethod": [ "GET", "POST" ]
@@ -19,8 +19,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "silos-users",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 5224
         }
       ],
       "UpstreamHttpMethod": [ "GET", "PUT" ]
