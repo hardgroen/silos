@@ -7,18 +7,18 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["src/Services/EcommerceDDD.Customers/EcommerceDDD.Customers.csproj", "src/Services/EcommerceDDD.Customers/"]
-COPY ["src/Core/EcommerceDDD.Core.Infrastructure/EcommerceDDD.Core.Infrastructure.csproj", "src/Core/EcommerceDDD.Core.Infrastructure/"]
-COPY ["src/Core/EcommerceDDD.Core/EcommerceDDD.Core.csproj", "src/Core/EcommerceDDD.Core/"]
-RUN dotnet restore "src/Services/EcommerceDDD.Customers/EcommerceDDD.Customers.csproj"
+COPY ["src/Services/Silos.Customers/Silos.Customers.csproj", "src/Services/Silos.Customers/"]
+COPY ["src/Core/Silos.Core.Infrastructure/Silos.Core.Infrastructure.csproj", "src/Core/Silos.Core.Infrastructure/"]
+COPY ["src/Core/Silos.Core/Silos.Core.csproj", "src/Core/Silos.Core/"]
+RUN dotnet restore "src/Services/Silos.Customers/Silos.Customers.csproj"
 COPY . .
-WORKDIR "/src/src/Services/EcommerceDDD.Customers"
-RUN dotnet build "EcommerceDDD.Customers.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Services/Silos.Customers"
+RUN dotnet build "Silos.Customers.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "EcommerceDDD.Customers.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Silos.Customers.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EcommerceDDD.Customers.dll"]
+ENTRYPOINT ["dotnet", "Silos.Customers.dll"]

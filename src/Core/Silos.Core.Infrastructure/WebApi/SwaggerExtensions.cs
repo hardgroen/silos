@@ -19,9 +19,7 @@ public static class SwaggerExtensions
             {
                 Version = swaggerSettings.Version,
                 Title = swaggerSettings.Title,
-                Description = swaggerSettings.Description,
-                Contact = new OpenApiContact { Name = "Felipe Henrique", Email = "fealberto@gmail.com" },
-                License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/falberthen/EcommerceDDD/blob/master/LICENSE") }
+                Description = swaggerSettings.Description
             });
 
             s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

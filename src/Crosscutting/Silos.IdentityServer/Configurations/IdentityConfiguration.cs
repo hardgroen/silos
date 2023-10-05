@@ -4,7 +4,7 @@ public class IdentityConfiguration
 {
     public const string CustomerRole = "Customer";
 
-    private const string _apiScope = "ecommerceddd-api.scope";    
+    private const string _apiScope = "silos-api.scope";    
     private const string _readScope = "read";
     private const string _writeScope = "write";
     private const string _deleteScope = "delete";
@@ -20,7 +20,7 @@ public class IdentityConfiguration
     public static IEnumerable<ApiResource> ApiResources =>
         new List<ApiResource>
         {
-            new ApiResource("ecommerceddd-api")
+            new ApiResource("silos-api")
             {
                 Scopes = new List<string> { 
                     _apiScope, 
@@ -33,7 +33,7 @@ public class IdentityConfiguration
 
     public static IEnumerable<ApiScope> ApiScopes =>
         new List<ApiScope> {
-            new ApiScope(_apiScope, "EcommerceDDD"),
+            new ApiScope(_apiScope, "Silos"),
             new ApiScope(name: _readScope,   displayName: "Read your data."),
             new ApiScope(name: _writeScope,  displayName: "Write your data."),
             new ApiScope(name: _deleteScope, displayName: "Delete your data."),
@@ -45,7 +45,7 @@ public class IdentityConfiguration
             // User's client
             new Client
             {
-                ClientId = "ecommerceddd.user_client",
+                ClientId = "silos.user_client",
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 RequireClientSecret = true,
                 ClientSecrets = new List<Secret>
@@ -65,7 +65,7 @@ public class IdentityConfiguration
             // machine to machine client
             new Client
             {
-                ClientId = "ecommerceddd.application_client",
+                ClientId = "silos.application_client",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 RequireClientSecret = true,
                 ClientSecrets = new List<Secret> { new Secret("secret33587^&%&^%&^f3%%%".Sha256()) },

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "EcommerceDDD.IdentityServer": {
+    "Silos.IdentityServer": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

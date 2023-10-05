@@ -7,7 +7,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-customers",
+          "Host": "silos-customers",
           "Port": 80
         }
       ],
@@ -19,7 +19,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-customers",
+          "Host": "silos-customers",
           "Port": 80
         }
       ],
@@ -32,7 +32,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-products",
+          "Host": "silos-products",
           "Port": 80
         }
       ],
@@ -44,62 +44,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-products",
+          "Host": "silos-products",
           "Port": 80
         }
       ],
       "UpstreamHttpMethod": [ "Post" ]
-    },
-    // Quotes
-    {
-      "DownstreamPathTemplate": "/api/quotes",
-      "UpstreamPathTemplate": "/api/quotes",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ecommerceddd-quotes",
-          "Port": 80
-        }
-      ],
-      "UpstreamHttpMethod": [ "GET", "POST" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/quotes/{id}",
-      "UpstreamPathTemplate": "/api/quotes/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ecommerceddd-quotes",
-          "Port": 80
-        }
-      ],
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
-    },
-    // Orders
-    {
-      "DownstreamPathTemplate": "/api/orders",
-      "UpstreamPathTemplate": "/api/orders",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ecommerceddd-orders",
-          "Port": 80
-        }
-      ],
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/orders/{id}",
-      "UpstreamPathTemplate": "/api/orders/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ecommerceddd-orders",
-          "Port": 80
-        }
-      ],
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE", "POST" ]
-    },
+    },  
     // Payments
     {
       "DownstreamPathTemplate": "/api/payments",
@@ -107,7 +57,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-payments",
+          "Host": "silos-payments",
           "Port": 80
         }
       ],
@@ -119,25 +69,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-payments",
+          "Host": "silos-payments",
           "Port": 80
         }
       ],
       "UpstreamHttpMethod": [ "DELETE" ]
-    },
-    // Shipments
-    {
-      "DownstreamPathTemplate": "/api/shipments",
-      "UpstreamPathTemplate": "/api/shipments",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ecommerceddd-shipments",
-          "Port": 80
-        }
-      ],
-      "UpstreamHttpMethod": [ "POST" ]
-    },
+    },  
     // SignalR
     {
       "DownstreamPathTemplate": "/api/signalr/{everything}",
@@ -145,7 +82,7 @@
       "UpstreamPathTemplate": "/api/signalr/{everything}",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ecommerceddd-apigateway",
+          "Host": "silos-apigateway",
           "Port": 80
         }
       ],
